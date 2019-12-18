@@ -11,9 +11,9 @@ public class addDlg extends GBDialog {
 	
 	public addDlg(JFrame parent,int type) {
 		super(parent);
-		level.addItem("Undergrad");
-		level.addItem("Grad");
-		setTitle("Add");
+		level.addItem("Undergraduate");
+		level.addItem("Graduate");
+		setTitle(format(type));
 		setDlgCloseIndicator("Cancel");
 		setSize(400, 200);
 		setLocationRelativeTo(null);
@@ -22,6 +22,18 @@ public class addDlg extends GBDialog {
 	
 	public void buttonClicked(JButton buttonObj) {
 		
+	}
+	
+	private String format(int type) {
+		if(type==1) {
+			level.setVisible(false);
+			return"Add Undergrad";
+		}
+		if(type==2) {
+			level.setVisible(false);
+			return"Add Grad";
+		}
+		return "Add";
 	}
 	
 	private void errorMsg(String str) {
