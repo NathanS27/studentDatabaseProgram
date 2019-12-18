@@ -11,7 +11,8 @@ public class addDlg extends GBDialog {
 	
 	public addDlg(JFrame parent,int type) {
 		super(parent);
-		level.addItem("E");
+		level.addItem("Undergrad");
+		level.addItem("Grad");
 		setTitle("Add");
 		setDlgCloseIndicator("Cancel");
 		setSize(400, 200);
