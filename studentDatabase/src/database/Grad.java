@@ -4,11 +4,11 @@ public class Grad extends Student {
 
 	private String name;
 	private int idNum;
-	private int gradeLevel;
+	private String major;
 	
-	public Grad(String nm, int num,int level) {
+	public Grad(String nm, int num,String maj) {
 		super(nm,num);
-		gradeLevel=level;
+		major=maj;
 		idNum=num;
 		name=nm;
 	}
@@ -19,7 +19,7 @@ public class Grad extends Student {
 	public int getIdNum() {
 		return idNum;
 	}
-	public int getGradeLevel() {
-		return gradeLevel;
+	public String getmajor() {
+		return major;
 	}
 }
