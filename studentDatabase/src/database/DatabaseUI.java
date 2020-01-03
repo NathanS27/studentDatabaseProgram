@@ -18,7 +18,7 @@ public class DatabaseUI extends GBFrame {
 	public void menuItemSelected(JMenuItem menuItem){
 		int type=0;
 		if(menuItem==display) {
-			DisplayDlg dlg = new DisplayDlg(this);
+			DisplayDlg dlg = new DisplayDlg(this,people);
 			dlg.setVisible(true);
 		}
 		else {

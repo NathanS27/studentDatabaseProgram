@@ -5,7 +5,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.*;
 import BreezySwing.*;
 
 import java.awt.BorderLayout;
@@ -23,13 +23,17 @@ public class DisplayDlg extends GBDialog {
 	    JRadioButton underGrad   = addRadioButton ("Under Graduate", 1,3,1,1); 
 	    JRadioButton grad = addRadioButton ("Graduate", 1,4,1,1);
 
+	    ArrayList<Person> People;
+	    
 	    private ChangeListener cl = new ChangeListener() {
 	    	@Override
 	    	public void stateChanged(ChangeEvent e) {
 	    		JRadioButton source = (JRadioButton) e.getSource();
 	    		
 	    		if(source==person && person.isSelected()) {
-	 
+	    			for(Person p: People) {
+	    				displayPerson(p);
+	    			}
 	    		}
 					
 				if(source==student && student.isSelected()) {
@@ -46,7 +50,7 @@ public class DisplayDlg extends GBDialog {
 	    
 	    JFrame parentClass;
 		
-		public DisplayDlg(JFrame parent) {
+		public DisplayDlg(JFrame parent, ArrayList<Person> list) {
 			super(parent);
 			setTitle("display");
 			schoolLevel.add(person);
@@ -58,6 +62,8 @@ public class DisplayDlg extends GBDialog {
 			underGrad.addChangeListener(cl);
 			grad.addChangeListener(cl);
 			person.setSelected(true);
+			People=list;
+			createTable();
 			setDlgCloseIndicator("Cancel");
 			setSize(400, 200);
 			setLocationRelativeTo(null);
@@ -76,7 +82,7 @@ public class DisplayDlg extends GBDialog {
 		}
 		
 		private void createTable() {
-			String[] columnNames = {"Title", "Author", "Status","Borrower", "Checked Out","Due Date"};
+			String[] columnNames = {"Name", "Student ID", "Grade","Level", "Major"};
 			String[][] data = {{"","","","","",""}};
 
 			// Set the layout mode of the data panel
@@ -104,16 +110,11 @@ public class DisplayDlg extends GBDialog {
 			dataTable.disable();
 		}
 		
-		private void displayBook(Book b) {
-			String[] dataRow = new String[6];
-			dataRow[0] = b.getTitle();
-			dataRow[1] = b.getAuthor();
-			dataRow[2] = statusCheck(b.isAvailable());
-			if(!b.isAvailable()) {
-				dataRow[3] = b.getBorrower();
-				dataRow[4] = b.getCheckOutDate().toString();
-				dataRow[5] = overdueFormat(b.isOverdue(),b);
-			}
+		private void displayPerson(Person p) {
+			String[] dataRow = new String[5];
+			dataRow[0]=p.getName();
+			
+			
 			
 			dataModel.addRow(dataRow);
 		}

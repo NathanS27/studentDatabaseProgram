@@ -133,6 +133,9 @@ public class addDlg extends GBDialog {
 			people.add(new Grad(name.getText(),Integer.parseInt(studentID.getText()),major.getText()));
 		}
 		System.out.println(people.get(people.size()-1).getName());
+		Student s=(Student)(people.get(people.size()-1));
+		System.out.println(s.getIdNum());
+		System.out.println(people.get(0).getClass().getName());
 	}
 	
 	private String format(int type) {
