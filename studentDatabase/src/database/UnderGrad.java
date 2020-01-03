@@ -10,4 +10,8 @@ public class UnderGrad extends Student {
 	public int getGradeLevel() {
 		return gradeLevel;
 	}
+	@Override
+	public String toString() {
+		return super.toString()+" "+gradeLevel;
+	}
 }

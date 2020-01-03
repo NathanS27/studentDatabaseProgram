@@ -24,6 +24,7 @@ public class addDlg extends GBDialog {
     JLabel stuIdLabel = addLabel("Student ID:",3,1,1,1);
     JTextField studentID = addTextField("",3,2,2,1);
     
+    JLabel gradeLabel = addLabel("Grade Level:",4,1,1,1);
     JComboBox grade = addComboBox(4,2,1,1);
     
     JLabel majorLabel = addLabel("Major:",4,1,1,1);
@@ -45,6 +46,7 @@ public class addDlg extends GBDialog {
     			stuIdLabel.setVisible(false);
 				studentID.setVisible(false);
 				
+				gradeLabel.setVisible(false);
 				grade.setVisible(false);
 				
 				majorLabel.setVisible(false);
@@ -55,6 +57,7 @@ public class addDlg extends GBDialog {
 				stuIdLabel.setVisible(true);
 				studentID.setVisible(true);
 				
+				gradeLabel.setVisible(false);
 				grade.setVisible(false);
 				
 				majorLabel.setVisible(false);
@@ -65,6 +68,7 @@ public class addDlg extends GBDialog {
 				stuIdLabel.setVisible(true);
 				studentID.setVisible(true);
 				
+				gradeLabel.setVisible(true);
 				grade.setVisible(true);
 				
 				majorLabel.setVisible(false);
@@ -75,6 +79,7 @@ public class addDlg extends GBDialog {
 				stuIdLabel.setVisible(true);
 				studentID.setVisible(true);
 				
+				gradeLabel.setVisible(false);
 				grade.setVisible(false);
 				
 				majorLabel.setVisible(true);
@@ -132,10 +137,6 @@ public class addDlg extends GBDialog {
 		else if(type==3) {
 			people.add(new Grad(name.getText(),Integer.parseInt(studentID.getText()),major.getText()));
 		}
-		System.out.println(people.get(people.size()-1).getName());
-		Student s=(Student)(people.get(people.size()-1));
-		System.out.println(s.getIdNum());
-		System.out.println(people.get(0).getClass().getName());
 	}
 	
 	private String format(int type) {

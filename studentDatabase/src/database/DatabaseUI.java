@@ -21,7 +21,7 @@ public class DatabaseUI extends GBFrame {
 			DisplayDlg dlg = new DisplayDlg(this,people);
 			dlg.setVisible(true);
 		}
-		else {
+		else{
 			if(menuItem==addUGrad) {
 				type=1;
 			}
@@ -32,6 +32,7 @@ public class DatabaseUI extends GBFrame {
 			dlg.setVisible(true);
 		}
 	}
+	
 	public static void main(String[] args) {
 		JFrame frm = new DatabaseUI();
 		frm.setSize(600, 400);
@@ -40,5 +41,10 @@ public class DatabaseUI extends GBFrame {
 		frm.setResizable(true);
 		frm.setVisible(true);
 		frm.setLocationRelativeTo(null);
+	}
+	
+	private void errorMsg(String str) {
+		ErrorDlg dlg = new ErrorDlg(this,str);
+		dlg.setVisible(true);
 	}
 }

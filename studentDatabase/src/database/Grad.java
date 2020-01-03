@@ -11,4 +11,8 @@ public class Grad extends Student {
 	public String getmajor() {
 		return major;
 	}
+	@Override
+	public String toString() {
+		return super.toString()+" "+major;
+	}
 }

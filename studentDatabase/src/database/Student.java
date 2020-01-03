@@ -12,4 +12,8 @@ public class Student extends Person{
 	public int getIdNum() {
 		return idNum;
 	}
+	@Override
+	public String toString() {
+		return super.toString()+" "+idNum;
+	}
 }
