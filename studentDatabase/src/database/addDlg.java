@@ -90,9 +90,8 @@ public class addDlg extends GBDialog {
     
     JFrame parentClass;
 	
-	public addDlg(JFrame parent,int typeVar, ArrayList<Person> p) {
+	public addDlg(JFrame parent, ArrayList<Person> p) {
 		super(parent);
-		type=typeVar;
 		people=p;
 		setTitle(format(type));
 		getContentPane().setBackground(new Color(84,134,249));
@@ -109,12 +108,7 @@ public class addDlg extends GBDialog {
 		grade.addItem("Junior");
 		grade.addItem("Senior");
 		person.setSelected(true);
-		if(typeVar==1) {
-			underGrad.setSelected(true);
-		}
-		else if(typeVar==2) {
-			grad.setSelected(true);
-		}
+		
 		setDlgCloseIndicator("Cancel");
 		setSize(400, 200);
 		setLocationRelativeTo(null);
@@ -123,20 +117,39 @@ public class addDlg extends GBDialog {
 	}
 	
 	public void buttonClicked(JButton buttonObj) {
-		errorCheck();
-		if(type==0) {
-			people.add(new Person(name.getText()));
+		try {
+			if(type==0) {
+				people.add(new Person(name.getText()));
+			}
+			else if(type==1) {
+				//TODO error check ID num
+				people.add(new Student(name.getText(),studentID.getText()));
+			}
+			else if(type==2) {
+				people.add(new UnderGrad(name.getText(),studentID.getText(),grade.getSelectedIndex()));
+			}
+			else if(type==3) {
+				people.add(new Grad(name.getText(),studentID.getText(),major.getText()));
+			}
+			dispose();
 		}
-		else if(type==1) {
-			//TODO error check ID num
-			people.add(new Student(name.getText(),Integer.parseInt(studentID.getText())));
+		catch(FormatException e) {
+			errorMsg(e.getMessage());
+			switch(e.error) {
+			case 1:
+				name.setText("");
+				name.grabFocus();
+				break;
+			case 2:
+				studentID.setText("");
+				studentID.grabFocus();
+				break;
+			case 3:
+				major.setText("");
+				major.grabFocus();
+			}
 		}
-		else if(type==2) {
-			people.add(new UnderGrad(name.getText(),Integer.parseInt(studentID.getText()),grade.getSelectedIndex()));
-		}
-		else if(type==3) {
-			people.add(new Grad(name.getText(),Integer.parseInt(studentID.getText()),major.getText()));
-		}
+		
 	}
 	
 	private String format(int type) {
@@ -152,13 +165,5 @@ public class addDlg extends GBDialog {
 	private void errorMsg(String str) {
 		ErrorDlg display = new ErrorDlg(parentClass,str);
 		display.setVisible(true);
-	}
-	
-	private void errorCheck() {
-		if(type==1) {
-			if(name.getText().isEmpty()) {
-				
-			}
-		}
 	}
 }
